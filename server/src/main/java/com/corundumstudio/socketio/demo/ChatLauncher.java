@@ -20,6 +20,7 @@ public class ChatLauncher {
         server.addEventListener("chatevent", ChatObject.class, new DataListener<ChatObject>() {
             @Override
             public void onData(SocketIOClient client, ChatObject data, AckRequest ackRequest) {
+            	// 广播消息,而且广播消息利用的是:Redis发布与订阅模来做的.
                 // broadcast messages to all clients
                 server.getBroadcastOperations().sendEvent("chatevent", data);
             }
